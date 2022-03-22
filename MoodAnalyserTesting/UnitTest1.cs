@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using mood_Analyser_Problem;
 using Mood_Analyser_Program;
 
 namespace MoodAnalyserTesting
@@ -31,6 +32,33 @@ namespace MoodAnalyserTesting
             string result = happySad.AnalysingMood();
 
             Assert.AreEqual("HAPPY", result);
+        }
+        [TestMethod]
+        public void GivenNull_RetunCustomException()
+        {
+            try
+            {
+                HappyOrSad happySad = new HappyOrSad();
+                string result = happySad.AnalysingMood();
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("message should not be null", ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void GivenEmpty_RetunCustomException()
+        {
+            try
+            {
+                HappyOrSad happySad = new HappyOrSad("");
+                string result = happySad.AnalysingMood();
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("message should not be empty", ex.Message);
+            }
         }
     }
 }
