@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MoodAnalyserTesting",
+    "\\mood_Analyser_Problem"
   ],
+  "SelectedNode": "\\mood_Analyser_Problem\\HappyOrSad.cs",
   "PreviewInSolutionExplorer": false
 }

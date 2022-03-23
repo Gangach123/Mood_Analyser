@@ -11,7 +11,7 @@ namespace MoodAnalyserTesting
         [TestMethod]
         public void GivenSad_ReturnSad()
         {
-            HappyOrSad happySad = new HappyOrSad("I am in sad mood");
+            HappyOrSad happySad = new HappyOrSad("SAD");
             string Result = happySad.AnalysingMood();
 
             Assert.AreEqual("SAD", Result);
