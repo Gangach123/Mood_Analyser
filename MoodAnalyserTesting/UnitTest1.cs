@@ -120,7 +120,7 @@ namespace MoodAnalyserTesting
             }
             catch (CustomException ex)
             {
-                Assert.AreEqual("class name is wrong", ex.Message);
+                Assert.AreEqual("Class name is wrong", ex.Message);
             }
         }
 
@@ -136,7 +136,34 @@ namespace MoodAnalyserTesting
             }
             catch (CustomException ex)
             {
-                Assert.AreEqual("class name is wrong", ex.Message);
+                Assert.AreEqual("Class name is wrong", ex.Message);
+            }
+        }
+        [TestMethod]
+        public void GivingFieldName_Wrong_RetunCustomException()
+        {
+            string Expected = "Wrong field name";
+            try
+            {
+                var result = Reflector.SetField("I am Happy", "WrongField");
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual(Expected, ex.Message);
+            }
+        }
+
+        [TestMethod]
+        public void GiveingMessage_Wrong_RetunCustomException()
+        {
+            string Expected = "Message should not be null";
+            try
+            {
+                var result = Reflector.SetField(null, "Message");
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual(Expected, ex.Message);
             }
         }
     }

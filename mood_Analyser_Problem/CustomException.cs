@@ -11,7 +11,7 @@ namespace mood_Analyser_Problem
         public enum ExceptionType
         {
             NULL_MESSAGE, EMPTY_MESSAGE,
-            CLASS_NOT_FOUND, CONSTRUCTOR_NOT_FOUND
+            CLASS_NOT_FOUND, CONSTRUCTOR_NOT_FOUND, WRONG_MESSAGE, WRONG_FIELD
         }
         public ExceptionType Type;
 
