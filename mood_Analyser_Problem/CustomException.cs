@@ -15,7 +15,7 @@ namespace mood_Analyser_Problem
         }
         public ExceptionType Type;
 
-        public CustomException(ExceptionType type, string message) : base(message)
+        public CustomException(ExceptionType type, string Message) : base(Message)
         {
             Type = type;
         }

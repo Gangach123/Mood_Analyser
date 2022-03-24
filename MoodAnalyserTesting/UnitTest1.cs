@@ -25,14 +25,14 @@ namespace MoodAnalyserTesting
 
             Assert.AreEqual("HAPPY", Result);
         }
-        [TestMethod]
+        /*[TestMethod]
         public void GivenNull_RetunHappy()
         {
             HappyOrSad happySad = new HappyOrSad(null);
             string result = happySad.AnalysingMood();
 
             Assert.AreEqual("HAPPY", result);
-        }
+        }*/
         [TestMethod]
         public void GivenNull_RetunCustomException()
         {
@@ -60,6 +60,55 @@ namespace MoodAnalyserTesting
                 Assert.AreEqual("message should not be empty", ex.Message);
             }
         }
+        [TestMethod]
+        public void GivingClassNameRight_ReturnsObject()
+        {
+            try
+            {
+                var expected = new HappyOrSad("lines");
+                MoodAnalserReflection factory = new MoodAnalserReflection("mood_Analyser_Problem.HappyOrSad", "HappyOrSad");
+                var MyObj = MoodAnalserReflection.FactoryMethod(factory, "lines");
+                expected.Equals(MyObj);
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("class name is wrong", ex.Message);
+            }
+        }
+
+
+        [TestMethod]
+        public void GivingClassNameWrong_RetunCustomException()
+        {
+            try
+            {
+                HappyOrSad happySad = new HappyOrSad("lines");
+                MoodAnalserReflection factory = new MoodAnalserReflection("mood_Analyser_Problem.HappyOrS", "HappyOrSad");
+                var MyObj = MoodAnalserReflection.FactoryMethod(factory, "lines");
+            }
+            catch (CustomException ex)
+            { 
+        
+                Assert.AreEqual("class name is wrong", ex.Message);
+            }
+        }
+
+
+        [TestMethod]
+        public void GivingConstructorWrong_RetunCustomException()
+        {
+            try
+            {
+                HappyOrSad happySad = new HappyOrSad("lines");
+                MoodAnalserReflection factory = new MoodAnalserReflection("mood_Analyser_Problem.HappyOrSad", "HappySa");
+                var MyObj = MoodAnalserReflection.FactoryMethod(factory, "lines");
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("constructor name is wrong", ex.Message);
+            }
+        }
+
     }
 }
 
