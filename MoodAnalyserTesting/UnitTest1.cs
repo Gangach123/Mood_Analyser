@@ -108,7 +108,37 @@ namespace MoodAnalyserTesting
                 Assert.AreEqual("constructor name is wrong", ex.Message);
             }
         }
+        [TestMethod]
+        public void GivingMessageRight_ReturnsObject()
+        {
+            try
+            {
+                HappyOrSad happySad = new HappyOrSad("I am happy");
+                MoodAnalserReflection factory = new MoodAnalserReflection("mood_Analyser_Problem.HappyOrSad", "HappyOrSad");
+                object MyObj = MoodAnalserReflection.InvokeMethod(factory, "I am happy");
+                happySad.Equals(MyObj);
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("class name is wrong", ex.Message);
+            }
+        }
 
+
+        [TestMethod]
+        public void GivingMessageWrong_RetunCustomException()
+        {
+            try
+            {
+                HappyOrSad happySad = new HappyOrSad("Mood of mine is good");
+                MoodAnalserReflection factory = new MoodAnalserReflection("mood_Analyser_Problem.HappyOrSad", "HappyOrSad");
+                var MyObj = MoodAnalserReflection.InvokeMethod(factory, "Mood of mine is good");
+            }
+            catch (CustomException ex)
+            {
+                Assert.AreEqual("class name is wrong", ex.Message);
+            }
+        }
     }
 }
 
